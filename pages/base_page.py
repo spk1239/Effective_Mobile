@@ -14,11 +14,6 @@ class BasePage():
           
         self.driver.get(element)
 
-    @allure.step("Получаем аттрибута")
-    def get_attribute(self, element):
-         
-         self.get_attribute(element)
-
     @allure.step("Скролим до нужного элемента")
     def scroll_to_the_element(self, locator):
 
@@ -50,11 +45,6 @@ class BasePage():
 
         return self.driver.find_element(*element)
 
-    @allure.step('Вводим значение')
-    def send_keys(self, locator, element):
-
-        self.driver.find_element(*locator).send_keys(element)
-
     @allure.step('Проверяем что элемент появился на экране')
     def element_is_displayed(self, locator):
 
@@ -77,14 +67,6 @@ class BasePage():
     def click_to_element_js(self, element):
         element = self.driver.find_element(*element)
         self.driver.execute_script("arguments[0].click();", element)
-
-    @allure.step("Ждем исчезновения элемента")
-    def wait_element_invisible(self, locator):
-        WebDriverWait(self.driver, 15).until(EC.invisibility_of_element_located(locator))
-
-    @allure.step("Ждем кликабельности элемента")
-    def wait_element_clickable(self, locator):
-        WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(locator))
 
     @allure.step('Ищем элементы')
     def find_elements(self, locator):
