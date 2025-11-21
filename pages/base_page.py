@@ -1,6 +1,5 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from locators.base_page_locators import BasePageLocators
 import allure
 
 class BasePage():
@@ -58,10 +57,9 @@ class BasePage():
             EC.presence_of_element_located(locator)
         )
 
-    @allure.step('Проверяем URL')    
-    def current_url(self, locator):
-        
-        return self.driver.current_url == locator
+    @allure.step('Получаем текущий URL')
+    def current_url(self):
+        return self.driver.current_url
 
     @allure.step("Кликаем на элемент через JavaScript")
     def click_to_element_js(self, element):
@@ -71,4 +69,9 @@ class BasePage():
     @allure.step('Ищем элементы')
     def find_elements(self, locator):
         return self.driver.find_elements(*locator)
+    
+    @allure.step("Переключаемся на новую вкладку")
+    def switch_to_new_tab(self):
+        window_handles = self.driver.window_handles
+        self.driver.switch_to.window(window_handles[-1])
     

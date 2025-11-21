@@ -1,30 +1,32 @@
 import pytest
 from selenium import webdriver
-import requests
-from faker import Faker
-from urls import Urls 
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
 
 class WebdriverFactory:
     @staticmethod
     def get_webdriver(browser_name):
         if browser_name == "firefox":
-            return webdriver.Firefox()
+            # Для Firefox тоже используем сервис
+            service = FirefoxService()
+            return webdriver.Firefox(service=service)
         elif browser_name == "chrome":
-            return webdriver.Chrome()
+            # Явно указываем использовать Selenium Manager
+            service = ChromeService()
+            return webdriver.Chrome(service=service)
         else:
             raise ValueError(f"Unsupported browser: {browser_name}")
 
-# Эта функция добавляет возможность передачи параметра --browser в командной строке pytest
 def pytest_addoption(parser):
     parser.addoption(
-    "--browser", action="store", default="chrome", help="Выбор браузера: 'chrome' или 'firefox'.")
+        "--browser", action="store", default="chrome", 
+        help="Выбор браузера: 'chrome' или 'firefox'."
+    )
 
 @pytest.fixture
 def driver(request):
-    # Получаем параметр браузера из командной строки
     browser_name = request.config.getoption("--browser")
-    # Создаем и возвращаем соответствующий драйвер
     driver = WebdriverFactory.get_webdriver(browser_name)
-    driver.maximize_window()  # Открытие окна на весь экран
+    driver.maximize_window()
     yield driver
     driver.quit()

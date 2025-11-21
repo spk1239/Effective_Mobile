@@ -46,3 +46,19 @@ class MainPage(BasePage):
     @allure.title("Жмем кнопку Консультация")
     def click_button_consultation(self):
         self.click_to_element(MainPageLocators.BOTTOM_BUTTON_CONSTULTATION)
+
+    @allure.step('Проверяем что заголовок "Свяжитесь с нами" отображается')
+    def is_contact_us_visible(self):
+        return self.element_is_displayed(MainPageLocators.HEADLINE_CONTACT_US)
+    
+    @allure.step('Проверяем что заголовок "Форма сотрудничества" отображается')
+    def is_employee_form_visible(self):
+        return self.element_is_displayed(MainPageLocators.HEADLINE_EMPLOYEE_FORM)
+    
+    @allure.step("Ожидаем появление заголовка 'Форма сотрудничества'")
+    def wait_for_employee_form(self):
+        self.wait_element(MainPageLocators.HEADLINE_EMPLOYEE_FORM)
+    
+    @allure.step("Ожидаем появление заголовка 'Свяжитесь с нами'")
+    def wait_for_contact_us(self):
+        self.wait_element(MainPageLocators.HEADLINE_CONTACT_US)

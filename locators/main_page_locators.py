@@ -21,3 +21,7 @@ class MainPageLocators():
     BOTTOM_BUTTON_EMPLOYMENT = (By.XPATH, "//a[text()='Трудоустройство']")
 
     BOTTOM_BUTTON_CONSTULTATION = (By.XPATH, "//a[text()='Консультация']")
+
+    HEADLINE_CONTACT_US = (By.XPATH, "//h2[text()='Свяжитесь с нами']")
+
+    HEADLINE_EMPLOYEE_FORM = (By.XPATH, "//h2[text()='Форматы сотрудничества']")
