@@ -2,6 +2,8 @@
 
 Автотесты для сайта "Effective Mobile"
 
+**Технологии:** Python 3.10, Selenium, Pytest, Allure, Docker
+
 **Структура проекта:**
 - `pages/` - классы страниц в стиле Page Object
 - `locators/` - локаторы элементов  
