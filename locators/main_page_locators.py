@@ -25,3 +25,7 @@ class MainPageLocators():
     HEADLINE_CONTACT_US = (By.XPATH, "//h2[text()='Свяжитесь с нами']")
 
     HEADLINE_EMPLOYEE_FORM = (By.XPATH, "//h2[text()='Форматы сотрудничества']")
+
+    OUTSTAFF_HEADER = (By.XPATH, "//h3[text()='Аутстафф']")
+
+    EMPLOYMENT_HEADER = (By.XPATH, "//h3[text()='Помощь в трудоустройстве']")

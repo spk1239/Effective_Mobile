@@ -75,3 +75,13 @@ class BasePage():
         window_handles = self.driver.window_handles
         self.driver.switch_to.window(window_handles[-1])
     
+    @allure.step("Скроллим до низа страницы")
+    def scroll_to_bottom(self):
+        self.driver.execute_script("window.scrollTo(0, 10000);")
+        self.wait(1)
+        self.driver.execute_script("""
+        const footer = document.querySelector('footer');
+        if (footer) {
+            footer.scrollIntoView({behavior: 'instant', block: 'end'});
+         }
+         """)
